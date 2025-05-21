@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Prediction App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #111827;
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+        .result {
+            margin-top: 20px;
+            color: green;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>House Price Prediction</h1>
+        <form action="/predict" method="post">
+            <input type="text" name="area" placeholder="Area (sq ft)" required>
+            <input type="text" name="bedrooms" placeholder="Bedrooms" required>
+            <input type="text" name="bathrooms" placeholder="Bathrooms" required>
+            <input type="text" name="floors" placeholder="Floors" required>
+
+            <select name="location" required>
+                <option value="" disabled selected>Select Location</option>
+                <option value="1">Big City</option>
+                <option value="2">Village</option>
+                <option value="3">Suburban Area</option>
+            </select>
+
+            <input type="text" name="parking" placeholder="Parking (1 = Yes, 0 = No)" required>
+            <input type="text" name="age" placeholder="Age of Property (years)" required>
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if price %}
+        <div class="result">
+            Predicted Price: {{ price }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
